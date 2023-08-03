@@ -28,7 +28,7 @@ variable "account_kind" {
 variable "account_tier" {
   description = "Defines the Tier to use for this storage account (Standard or Premium)."
   type        = string
-  default     = null
+  default     = "Standard"
 }
 
 variable "access_tier" {
@@ -44,7 +44,7 @@ variable "access_tier" {
 
 variable "replication_type" {
   description = "Storage account replication type - i.e. LRS, GRS, RAGRS, ZRS, GZRS, RAGZRS."
-  type        = string
+  type        = "LRS"
 }
 
 variable "enable_large_file_share" {
@@ -175,7 +175,7 @@ variable "default_network_rule" {
 variable "shared_access_key_enabled" {
   description = "Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "blob_versioning_enabled" {

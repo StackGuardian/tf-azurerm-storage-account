@@ -90,4 +90,5 @@ resource "azurerm_storage_container" "main" {
   name                  = each.value.name
   storage_account_name  = var.name
   container_access_type = each.value.container_access_type
+  depends_on            = [azurerm_storage_account.sa]
 }
