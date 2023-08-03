@@ -164,7 +164,7 @@ variable "nfsv3_enabled" {
 variable "default_network_rule" {
   description = "Specifies the default action of allow or deny when no other network rules match"
   type        = string
-  default     = "Deny"
+  default     = "Allow"
 
   validation {
     condition     = (contains(["deny", "allow"], lower(var.default_network_rule)))
@@ -188,4 +188,21 @@ variable "container_delete_retention_days" {
   description = "Retention days for deleted container. Valid value is between 1 and 365 (set to 0 to disable)."
   type        = number
   default     = 7
+}
+variable "storage_containers" {
+  description = "Storage Container names."
+  type = map(object({
+    name                  = string
+    container_access_type = string
+  }))
+  default = {
+    runner = {
+      name                  = "runner"
+      container_access_type = "private"
+    }
+    system = {
+      name                  = "system"
+      container_access_type = "private"
+    }
+  }
 }

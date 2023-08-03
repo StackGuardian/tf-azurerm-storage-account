@@ -84,3 +84,10 @@ resource "azurerm_storage_encryption_scope" "scope" {
   source                             = coalesce(each.value.source, "Microsoft.Storage")
   infrastructure_encryption_required = coalesce(each.value.enable_infrastructure_encryption, var.infrastructure_encryption_enabled)
 }
+
+resource "azurerm_storage_container" "main" {
+  for_each = var.storage_containers
+  name                  = each.value.name
+  storage_account_name  = var.name
+  container_access_type = each.value.container_access_type
+}
