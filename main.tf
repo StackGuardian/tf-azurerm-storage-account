@@ -39,14 +39,14 @@ resource "azurerm_storage_account" "sa" {
           days = var.blob_delete_retention_days
         }
       }
-      
+
       dynamic "container_delete_retention_policy" {
         for_each = (var.container_delete_retention_days == 0 ? [] : [1])
         content {
           days = var.container_delete_retention_days
         }
       }
-      
+
       dynamic "cors_rule" {
         for_each = (var.blob_cors == null ? {} : var.blob_cors)
         content {
@@ -86,7 +86,7 @@ resource "azurerm_storage_encryption_scope" "scope" {
 }
 
 resource "azurerm_storage_container" "main" {
-  for_each = var.storage_containers
+  for_each              = var.storage_containers
   name                  = each.value.name
   storage_account_name  = var.name
   container_access_type = each.value.container_access_type
