@@ -189,3 +189,10 @@ variable "container_delete_retention_days" {
   type        = number
   default     = 7
 }
+
+variable "public_network_access_enabled" {
+  description = "(Optional) Whether the public network access is enabled?"
+  default     = true
+  type        = bool
+
+}
